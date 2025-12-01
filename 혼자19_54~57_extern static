@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int input_data();
+double average();
+void print_data(double);
+
+int count = 0;
+static int total = 0;
+
+int main(){
+    double avg;
+
+    total = input_data();
+    avg = average();
+    print_data(avg);
+
+    return 0;
+}
+
+void print_data(double avg){
+    printf("입력한 양수의 개수: %d\n", count);
+    printf("전체 합의 평균: %d, %.1lf\n", total, avg);
+}
+
+#include <stdio.h>
+
+extern int count;
+int total = 0;
+
+int input_data(){
+    int pos;
+    while(1){
+        printf("양수 입력: ");
+        scanf("%d", &pos);
+        if(pos < 0) break;
+        count++;
+        total += pos;
+    }
+    return total;
+}
+extern int count;
+extern int total;
+
+double average(){
+    return total / (double)count;
+}
